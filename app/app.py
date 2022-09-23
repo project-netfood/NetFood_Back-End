@@ -7,8 +7,11 @@ app = Flask(__name__)
 
 try:
     mongo = pymongo.MongoClient(
-    host="localhost", 
-    port=27017, 
+    host="mongodb", 
+    port=27017,
+    username='root', 
+    password='pass',
+    authSource="admin", 
     serverSelectionTimeoutMS = 1000
     )
     db =mongo.netfood
