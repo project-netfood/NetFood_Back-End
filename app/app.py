@@ -3,7 +3,11 @@ from flask import Flask, Response,request
 import pymongo
 import json
 from bson.objectid import ObjectId
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 try:
     mongo = pymongo.MongoClient(
@@ -19,8 +23,10 @@ try:
 except:
     print("ERROR - Cannot connect to BDD")
 
+
 ##############
 @app.route("/plats", methods=["GET"])
+@cross_origin()
 def get_some_plats():
     try:
         data = list(db.plats.find())
