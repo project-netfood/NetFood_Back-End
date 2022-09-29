@@ -14,14 +14,12 @@ try:
     host="mongodb", 
     port=27017,
     username='root', 
-    password='pass',
-    authSource="admin", 
-    serverSelectionTimeoutMS = 1000
+    password='pass'
     )
-    db =mongo.netfood
+    db = mongo.netfood
     mongo.server_info() # trigger exception if cannot connect to bdd
-except:
-    print("ERROR - Cannot connect to BDD")
+except Exception as e:
+    print("ERROR - Cannot connect to BDD", str(e))
 
 
 ##############
@@ -34,7 +32,7 @@ def get_some_plats():
             plat["_id"] = str(plat["_id"])
         return Response(
             response= json.dumps(data),
-            status=500,
+            status=200,
             mimetype="application/json"
         )
     except Exception as ex:
