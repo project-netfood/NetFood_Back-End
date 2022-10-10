@@ -1,0 +1,22 @@
+name: Push or Pull ?
+
+on: [push, pull_request]
+
+env:
+  PUSH: Un PUSH a été effectué
+  PR : Une PULL-REQUEST a été effectué
+
+jobs:
+  push:
+    if: ${{github.event_name == 'push'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: push
+        run: echo "$PUSH"
+  
+  pr:
+    if: ${{github.event_name == 'pull_request'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR
+        run: echo "$PR"
